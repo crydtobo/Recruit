@@ -1,0 +1,6 @@
+/home/dawid/Projects/cmake_testing/CMakeFiles/edit_cache.dir
+/home/dawid/Projects/cmake_testing/CMakeFiles/rebuild_cache.dir
+/home/dawid/Projects/cmake_testing/CMakeFiles/package.dir
+/home/dawid/Projects/cmake_testing/CMakeFiles/test_library.dir
+/home/dawid/Projects/cmake_testing/CMakeFiles/package_source.dir
+/home/dawid/Projects/cmake_testing/CMakeFiles/cmake_testing.dir

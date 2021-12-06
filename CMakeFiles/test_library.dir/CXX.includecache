@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dawid/Projects/cmake_testing/test/test.cpp
+gtest/gtest.h
+-
+iostream
+-
+calc.h
+/home/dawid/Projects/cmake_testing/test/calc.h
+
+includes/calc/calc.h
+iostream
+-
+vector
+-
+array
+-
+cmath
+-
+string
+-
+stack
+-
+sstream
+-
+map
+-
+

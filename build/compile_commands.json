@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/dawid/Projects/cmake_testing/build",
+  "command": "/bin/c++   -I/home/dawid/Projects/cmake_testing/includes -I/home/dawid/Projects/cmake_testing/includes/calc   -O0 -g -g   -std=gnu++17 -o CMakeFiles/test_library.dir/test/test.cpp.o -c /home/dawid/Projects/cmake_testing/test/test.cpp",
+  "file": "/home/dawid/Projects/cmake_testing/test/test.cpp"
+},
+{
+  "directory": "/home/dawid/Projects/cmake_testing/build",
+  "command": "/bin/c++   -I/home/dawid/Projects/cmake_testing/includes -I/home/dawid/Projects/cmake_testing/includes/calc   -O0 -g -g   -std=gnu++17 -o CMakeFiles/cmake_testing.dir/main.cpp.o -c /home/dawid/Projects/cmake_testing/main.cpp",
+  "file": "/home/dawid/Projects/cmake_testing/main.cpp"
+},
+{
+  "directory": "/home/dawid/Projects/cmake_testing/build",
+  "command": "/bin/c++   -I/home/dawid/Projects/cmake_testing/includes -I/home/dawid/Projects/cmake_testing/includes/calc   -O0 -g -g   -std=gnu++17 -o CMakeFiles/cmake_testing.dir/src/calc.cpp.o -c /home/dawid/Projects/cmake_testing/src/calc.cpp",
+  "file": "/home/dawid/Projects/cmake_testing/src/calc.cpp"
+},
+{
+  "directory": "/home/dawid/Projects/cmake_testing/build",
+  "command": "/bin/c++   -I/home/dawid/Projects/cmake_testing/includes -I/home/dawid/Projects/cmake_testing/includes/calc   -O0 -g -g   -std=gnu++17 -o CMakeFiles/cmake_testing.dir/src/matrix.cpp.o -c /home/dawid/Projects/cmake_testing/src/matrix.cpp",
+  "file": "/home/dawid/Projects/cmake_testing/src/matrix.cpp"
+},
+{
+  "directory": "/home/dawid/Projects/cmake_testing/build",
+  "command": "/bin/c++   -I/home/dawid/Projects/cmake_testing/includes -I/home/dawid/Projects/cmake_testing/includes/calc   -O0 -g -g   -std=gnu++17 -o CMakeFiles/cmake_testing.dir/test/test.cpp.o -c /home/dawid/Projects/cmake_testing/test/test.cpp",
+  "file": "/home/dawid/Projects/cmake_testing/test/test.cpp"
+}
+]
