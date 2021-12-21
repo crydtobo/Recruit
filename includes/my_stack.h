@@ -1,3 +1,5 @@
+
+  
 #include <iostream>
 #include <string>
 #include <filesystem>
@@ -9,4 +11,4 @@
 #include <thread>
 
 std::tuple<int, int> amountOfwords(std::ifstream &file);
-std::map<std::string, std::vector<int>> open_file(const std::string &path);
+std::tuple<int, int> numbersOfFilesAndFolders(const std::string &path);

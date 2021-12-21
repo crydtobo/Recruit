@@ -6,21 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/dawid/Projects/cmake_testing/main.cpp
-iostream
--
-optional
--
-string
--
-thread
--
-gtest/gtest.h
--
-stack
--
+/home/dawid/Projects/cmake_testing/src/matrix.cpp
 my_stack.h
-/home/dawid/Projects/cmake_testing/my_stack.h
+/home/dawid/Projects/cmake_testing/src/my_stack.h
 
 includes/my_stack.h
 iostream

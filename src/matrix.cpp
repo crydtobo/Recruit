@@ -15,15 +15,79 @@ std::tuple<int, int> amountOfwords(std::ifstream &file)
     return std::make_tuple(words, lines);
 }
 
-std::map<std::string, std::vector<int>> open_file(const std::string &path)
+std::tuple<int, int> countWords(const std::filesystem::directory_entry &i, std::ifstream &file)
 {
-    int counter_files = 0;
-    int counter_folders = 0;
-    std::string line;
-    std::map<std::string, std::vector<int>> result;
+    file.close();
+    file.open(i.path());
+    return amountOfwords(file);
+}
 
-    std::map<std::string, int> amountOfSubFolders;
-    
+int countCharacter(std::ifstream &file)
+{
+    char c;
+    int amountOfchar;
+    while (file.get(c))
+        amountOfchar++;
+    return amountOfchar;
+}
+
+void countFiles(int &count)
+{
+    count++;
+}
+
+void printFilesDetails(const std::filesystem::directory_entry &i, const std::vector<int> &details)
+{
+    std::cout << " File: " << i.path() << std::endl;
+    std::cout << " Size of file: " << i.file_size() << " KB" << std::endl;
+    std::cout << " characters: " << details[0] << std::endl;
+    std::cout << " words: " << details[1] << std::endl;
+    std::cout << " lines: " << details[2] << std::endl;
+}
+
+void printFoldersDetails()
+{
+}
+
+std::vector<int> hanlerForNonEmptyFile(const std::filesystem::directory_entry &i)
+{
+    char c;
+    int amountOfchar = 0;
+    std::vector<int> folders;
+    std::ifstream file;
+
+    file.open(i.path());
+    if (!file){
+        std::cout << "Problemws with opening file" << std::endl;
+        return {};
+    }
+    else
+    {
+        if (file.peek() == std::ifstream::traits_type::eof())
+        {
+            std::cout << "File: " << i.path() << " is empty" << std::endl;
+        }
+        else
+        {
+
+            auto tuple_lines_words = countWords(i, file);
+            file.close();
+
+            folders.push_back(amountOfchar);                   //character
+            folders.push_back(std::get<0>(tuple_lines_words)); //words
+            folders.push_back(std::get<1>(tuple_lines_words)); //lines
+
+            //print 
+            printFilesDetails(i, folders);
+        }
+    }
+    return folders;
+}
+
+std::tuple<int, int> numbersOfFilesAndFolders(const std::string &path)
+{
+    int counter_files = 0, counter_folders = 0;
+
     //listing directories ad files in this path
     std::cout << " Recursive " << std::endl;
     for (const auto &i : std::filesystem::recursive_directory_iterator(path))
@@ -34,50 +98,12 @@ std::map<std::string, std::vector<int>> open_file(const std::string &path)
         }
         else
         {
-            char c;
-            int amountOfchar = 0;
-            std::vector<int> folders;
-            std::ifstream file_x;
-
-            file_x.open(i.path());
-            if (!file_x)
-                std::cout << "Problemws with opening file" << std::endl;
-            else
-            {
-                if (file_x.peek() == std::ifstream::traits_type::eof())
-                {
-                    counter_files++;
-                    std::cout << "File: " << i.path() << " is empty" << std::endl;
-                }
-                else
-                {
-                    counter_files++;
-                    while (file_x.get(c))
-                        amountOfchar++;
-                    file_x.close();
-
-                    //counting words
-                    file_x.open(i.path());
-                    //std::thread(amountOfwords, file_x);
-                    auto [lines, words] = amountOfwords(file_x);
-
-                    folders.push_back(amountOfchar);
-                    folders.push_back(words);
-                    folders.push_back(lines);
-
-                    std::cout << "File: " << i.path() << std::endl;
-                    std::cout << " Size of file: " << i.file_size() << " KB" << std::endl;
-                    std::cout << " lines: " << lines << std::endl;
-                    std::cout << " words: " << words << std::endl;
-                    std::cout << " characters: " << amountOfchar << std::endl;
-                    file_x.close();
-                    result[i.path()] = folders;
-                }
-            }
+            countFiles(counter_files);
+            hanlerForNonEmptyFile(i);
         }
     }
 
     std::cout << "Liczba folderów: " << counter_folders << std::endl;
     std::cout << "Liczba plików: " << counter_files << std::endl;
-    return result;
+    return {1, 2};
 }

@@ -6,11 +6,15 @@
 #include <stack>
 #include "my_stack.h"
 
+//zdefiniuj sciezke do pliku/folderu ktpory chcesz sprawdzic 
+#define pathToChechFile "/home/dawid/Projects/cmake_testing"
+
+
 int main(int argc, char **argv)
 {
     std::cout << "Task1" << std::endl;
     try{
-        auto result = open_file("/david/projects");
+        auto [files, folders] = numbersOfFilesAndFolders(pathToChechFile);
     }
     catch(...){
         std::cout << "Blędna ścieżka!\nPodaj poprawną ;)" <<std::endl;
