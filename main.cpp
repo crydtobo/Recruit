@@ -7,7 +7,7 @@
 #include "my_stack.h"
 
 //zdefiniuj sciezke do pliku/folderu ktpory chcesz sprawdzic 
-#define pathToChechFile "/home/dawid/Projects/cmake_testing"
+#define pathToChechFile "/home/dawid/Projects/CodingGame/"
 
 
 int main(int argc, char **argv)

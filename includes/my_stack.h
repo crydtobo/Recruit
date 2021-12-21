@@ -8,7 +8,7 @@
 #include <tuple>
 #include <map>
 #include <vector>
-#include <thread>
+#include <cstdlib>
 
 std::tuple<int, int> amountOfwords(std::ifstream &file);
 std::tuple<int, int> numbersOfFilesAndFolders(const std::string &path);

@@ -1,5 +1,9 @@
 #include "my_stack.h"
 
+//define filename
+#define nameFileToSaveData "foldersDetails.txt"
+
+
 std::tuple<int, int> amountOfwords(std::ifstream &file)
 {
     std::string line;
@@ -17,7 +21,6 @@ std::tuple<int, int> amountOfwords(std::ifstream &file)
 
 std::tuple<int, int> countWords(const std::filesystem::directory_entry &i, std::ifstream &file)
 {
-    file.close();
     file.open(i.path());
     return amountOfwords(file);
 }
@@ -28,6 +31,7 @@ int countCharacter(std::ifstream &file)
     int amountOfchar;
     while (file.get(c))
         amountOfchar++;
+    file.close();
     return amountOfchar;
 }
 
@@ -49,10 +53,36 @@ void printFoldersDetails()
 {
 }
 
-std::vector<int> hanlerForNonEmptyFile(const std::filesystem::directory_entry &i)
+void openFile(std::ofstream &file, const std::string &file_name){
+    file.open(file_name);
+    if (!file) // file couldn't be opened
+    { 
+        std::cerr << "Error: file could not be opened" << std::endl;
+        exit(1);
+    }
+}
+
+void writeDatatoFile(const std::string &file_name, std::ofstream &fileToSave, const std::vector<int> &in)
 {
-    char c;
-    int amountOfchar = 0;
+    std::vector<std::string> strings;
+    int c = 0;
+
+    strings.push_back("SizeOfFile");
+    strings.push_back("characters:");
+    strings.push_back("words:");
+    strings.push_back("lines:");
+
+    fileToSave << "File name: " << file_name << std::endl;
+
+    for (auto i : in)
+    {
+        fileToSave << strings[c] << i << std::endl;
+        c++;
+    }
+}
+
+std::vector<int> hanlerForNonEmptyFile(std::ofstream &fileToSave, const std::filesystem::directory_entry &i)
+{
     std::vector<int> folders;
     std::ifstream file;
 
@@ -69,16 +99,16 @@ std::vector<int> hanlerForNonEmptyFile(const std::filesystem::directory_entry &i
         }
         else
         {
-
+            int countChar = countCharacter(file);
             auto tuple_lines_words = countWords(i, file);
-            file.close();
 
-            folders.push_back(amountOfchar);                   //character
+            folders.push_back(i.file_size());
+            folders.push_back(countChar);                   //character
             folders.push_back(std::get<0>(tuple_lines_words)); //words
             folders.push_back(std::get<1>(tuple_lines_words)); //lines
-
-            //print 
-            printFilesDetails(i, folders);
+            writeDatatoFile(i.path(), fileToSave, folders);
+            //printFilesDetails(i, folders);
+            file.close();
         }
     }
     return folders;
@@ -87,7 +117,8 @@ std::vector<int> hanlerForNonEmptyFile(const std::filesystem::directory_entry &i
 std::tuple<int, int> numbersOfFilesAndFolders(const std::string &path)
 {
     int counter_files = 0, counter_folders = 0;
-
+    std::ofstream writeDataTofile;
+    openFile(writeDataTofile, nameFileToSaveData);
     //listing directories ad files in this path
     std::cout << " Recursive " << std::endl;
     for (const auto &i : std::filesystem::recursive_directory_iterator(path))
@@ -99,11 +130,12 @@ std::tuple<int, int> numbersOfFilesAndFolders(const std::string &path)
         else
         {
             countFiles(counter_files);
-            hanlerForNonEmptyFile(i);
+            hanlerForNonEmptyFile(writeDataTofile, i);
         }
     }
 
     std::cout << "Liczba folderów: " << counter_folders << std::endl;
     std::cout << "Liczba plików: " << counter_files << std::endl;
+    writeDataTofile.close();
     return {1, 2};
 }
