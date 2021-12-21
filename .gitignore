@@ -20,3 +20,5 @@ core
 /cmake-build-debug/
 .idea/
 *.cbp
+libtest_library.a
+
