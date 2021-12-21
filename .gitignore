@@ -22,3 +22,10 @@ core
 *.cbp
 libtest_library.a
 
+# Directories
+**bin/
+**bin-int/
+
+# Files
+*.user
+*imgui.ini
